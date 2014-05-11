@@ -24,6 +24,7 @@ class Node:
         visited = set(self)
         s = self.value + ': [' + ','.join([str(n.value) for n in self.neighbors]) + ']\n'
         s += ''.join([str(n) for n in self.neighbors if n not in visited])
+        return s
 
 if __name__ == '__main__':
     runTest(Node(1), Node(2), False)
