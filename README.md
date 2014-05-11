@@ -1,4 +1,5 @@
 CrackingTheCodingInterview
 ==========================
 
-Solutions to Cracking the Coding Interview problems
+My solutions to _Cracking the Coding Interview_, 4th edition problems in Python, Java, and C.
+
