@@ -1,0 +1,58 @@
+14.1.  Private constructor disallows inheritance.  Sub-classes are unable to call
+super() which is required for sub-classing.
+
+14.2.  Yes.
+
+14.3.  final - variable may not be assigned to again.
+
+       finally - always-executed block of a try-catch-finally clause, used for resource cleanup
+
+       finalize - eventually-executed method of a class called by the GC, no
+       guarantee it will be called, do not use to release resources ala C++ RAII
+
+14.4.  Templates in C++ are done via substitution by the macro pre-processor,
+       which is itself a Turing-complete language and allows all sorts of interesting
+       computation.
+
+       Generics in Java are checked at compile-time but the types are then
+       "erased" when compiled into bytecode.  Type erasure means the run-time
+       type of a collection's values are always Object, which thus introduces
+       various restrictions on the use of generics where the run-time type of
+       the collection is required.
+
+14.5.  Object reflection is used to inspect at run-time the variables and
+       methods of an object.  This is often used for (de)serialization, e.g. 
+       to or from JSON or a database
+
+14.6.  Implement a CountedMap class which delegates to a contained Map and
+       tracks the use of the put and get methods, and has additional methods to
+       query the counts.
+
+       e.g.
+
+       public class CountedMap<K, V> implements Map<K, V> {
+           private int numPuts = 0;
+           private int numGets = 0;
+
+           private Map<K, V> map;
+
+           public CountedMap(Map<K, V> map) {
+               this.map = map;
+           }
+
+           public void put(K key, V value) {
+               numPuts++;
+               map.put(key, value);
+           }
+
+           public V get(K key) {
+               numGets++;
+               return map.get(key);
+           }
+
+           public int gets() { return numGets; }
+           public int puts() { return numPuts; }
+
+           ...other map methods delegate to map...
+       }
+    
